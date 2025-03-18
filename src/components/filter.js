@@ -13,6 +13,8 @@ import {
 import { FaFilter } from "react-icons/fa";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useCallback } from "react";
+import { debounce } from "@/utils/helper";
 
 export default function Filters() {
   const { search, status, startDate, endDate } = useSelector(
@@ -20,21 +22,27 @@ export default function Filters() {
   );
   const dispatch = useDispatch();
 
+  const debouncedSearch = useCallback(
+    debounce((value) => {
+      dispatch(resetState());
+      dispatch(
+        fetchUsers({
+          page: 1,
+          offset: 0,
+          search: value,
+          status,
+          startDate,
+          endDate,
+        })
+      );
+    }, 500),
+    [dispatch, status, startDate, endDate]
+  );
+
   const handleSearchChange = (e) => {
     const value = e.target.value;
     dispatch(setSearchText(value));
-    dispatch(resetState());
-
-    dispatch(
-      fetchUsers({
-        page: 1,
-        offset: 0,
-        search: value,
-        status,
-        startDate,
-        endDate,
-      })
-    );
+    debouncedSearch(value);
   };
 
   const handleStatusChange = (e) => {
