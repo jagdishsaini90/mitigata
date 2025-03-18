@@ -1,7 +1,5 @@
 import { USERS_MOCK_DATA } from "../../../../DATA";
 
-import { format, parse } from "date-fns";
-
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
 
@@ -37,7 +35,6 @@ export async function GET(request) {
         createdAt >= new Date(startDate) && createdAt <= new Date(startDate)
       );
     });
-    console.log(filteredUsers);
   }
 
   const totalUsers = USERS_MOCK_DATA.length;

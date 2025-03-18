@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  setSortedBy,
-  setSortedByDetails,
-  updateUsers,
-} from "@/redux/usersSlice";
+import { setSortedBy, updateUsers } from "@/redux/usersSlice";
 import {
   FaBan,
   FaCheck,
