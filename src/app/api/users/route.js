@@ -1,3 +1,4 @@
+import { isWithinInterval } from "date-fns";
 import { USERS_MOCK_DATA } from "../../../../DATA";
 
 export async function GET(request) {
@@ -29,11 +30,12 @@ export async function GET(request) {
   }
 
   if (startDate && endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
     filteredUsers = filteredUsers.filter((user) => {
       const createdAt = new Date(user.details.date);
-      return (
-        createdAt >= new Date(startDate) && createdAt <= new Date(startDate)
-      );
+      return isWithinInterval(createdAt, { start, end });
     });
   }
 

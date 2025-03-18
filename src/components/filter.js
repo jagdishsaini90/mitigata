@@ -145,7 +145,7 @@ export default function Filters() {
 
         <button
           onClick={handleClear}
-          className="flex items-center gap-2 border border-[#B9B9B9] px-4 py-2 text-sm sm:text-base rounded-[5px] text-gray-700 hover:bg-gray-100 transition"
+          className="flex cursor-pointer items-center gap-2 border border-[#B9B9B9] px-4 py-2 text-sm sm:text-base rounded-[5px] text-gray-700 hover:bg-gray-100 transition"
         >
           <FaFilter className="text-gray-500" />
           Clear Filters

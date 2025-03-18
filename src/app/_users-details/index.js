@@ -64,16 +64,21 @@ const UsersDetails = () => {
         </div>
         <Button>Download Report</Button>
       </div>
+
       <UserStatsCard />
       <Filters />
-      {users.length !== 0 ? (
+
+      {loading ? (
+        <Loader />
+      ) : users.length > 0 ? (
         <>
           <DataTable />
           <Pagination />
-          {loading && <Loader />}
         </>
       ) : (
-        <Loader />
+        <div className="text-center text-gray-500 py-10 text-lg">
+          No users to show.
+        </div>
       )}
     </div>
   );
