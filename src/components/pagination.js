@@ -9,6 +9,7 @@ const Pagination = () => {
   const dispatch = useDispatch();
 
   const updateUsers = (page) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     dispatch(setCurrentPage(page));
     dispatch(fetchUsers({ page, offset: 0, search, status }));
   };
